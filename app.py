@@ -1,7 +1,14 @@
+import signal
+import sys
 import logging
+import platform
 
 from flask import Flask
-import platform
+
+def sigterm_handler(signal, frame):
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, sigterm_handler)
 
 app = Flask(__name__)
 
